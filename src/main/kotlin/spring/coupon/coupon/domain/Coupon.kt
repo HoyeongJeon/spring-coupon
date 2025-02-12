@@ -1,22 +1,19 @@
 package spring.coupon.coupon.domain
 
-import jakarta.persistence.Column
-import jakarta.persistence.Entity
-import jakarta.persistence.Id
-import spring.coupon.coupon.infrastructure.CouponId
+import jakarta.persistence.*
 
 @Entity
-class Coupon (
-    @Column(unique = true, nullable = false)
-    val userId: Long
-) {
+class Coupon(
     @Id
-    @CouponId
-    val id: String? = null
+    @GeneratedValue
+    private val id : Long? = null,
 
-    companion object{
-        fun create(userId: Long): Coupon {
-            return  Coupon(userId)
-        }
-    }
-}
+    val code: String? = null,
+
+    @Column(unique = true)
+    var userId: Long? = null,
+
+    @Version
+    private val version: Long = 0L
+)
+
